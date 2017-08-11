@@ -127,12 +127,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         requestOptions.isSynchronous = true
         requestOptions.deliveryMode = .highQualityFormat
         
-//        let fetchOptions = PHFetchOptions()
+        let fetchOptions = PHFetchOptions()
 //        let date = NSDate(timeIntervalSinceNow: -30*24*60*60)
 // 　      fetchOptions.predicate = NSPredicate(format: "creationDate > %@", date)
-//        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
        
-        let assets:PHFetchResult = PHAsset.fetchAssets(with: .image, options: nil)
+        let assets:PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         assets.enumerateObjects({ asset, idx, stop in
             imgManager.requestImage(for: asset , targetSize: CGSize(width: 250, height: 250), contentMode: .aspectFill, options: requestOptions, resultHandler: {
                 image, info in
