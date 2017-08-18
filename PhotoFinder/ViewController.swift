@@ -10,6 +10,7 @@ import UIKit
 import Photos
 
 struct AlbumImage {
+    let asset: PHAsset
     let image: UIImage?
     let id: String
 }
@@ -121,12 +122,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func grabPhotos() {
-        let imgManager = PHImageManager.default()
-        
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .highQualityFormat
-        
         let fetchOptions = PHFetchOptions()
 //        let date = NSDate(timeIntervalSinceNow: -30*24*60*60)
 // 　      fetchOptions.predicate = NSPredicate(format: "creationDate > %@", date)
@@ -134,29 +129,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        
         let assets:PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         assets.enumerateObjects({ asset, idx, stop in
-            imgManager.requestImage(for: asset , targetSize: CGSize(width: 250, height: 250), contentMode: .aspectFill, options: requestOptions, resultHandler: {
-                image, info in
-                let album = AlbumImage(image: image, id: asset.localIdentifier)
-                self.imageArray.append(album)
-                self.showImageArray.append(album)
-            })
+            let album = AlbumImage(asset: asset, image: nil, id: asset.localIdentifier)
+            self.imageArray.append(album)
+            self.showImageArray.append(album)
         })
-//        if let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions) {
-//            if fetchResult.count > 0 {
-//                for i in 0..<fetchResult.count {
-//                    imgManager.requestImage(for: fetchResult.object(at: i) , targetSize: CGSize(width: 250, height: 250), contentMode: .aspectFill, options: requestOptions, resultHandler: {
-//                        image, info in
-//                        if let url: URL = info?["PHImageFileURLKey"] as? URL {
-//                            print(info ?? "NONE")
-//                            self.imageArray.append(AlbumImage(image: image, url: url))
-//                        }
-//                    })
-//                }
-//            } else {
-//                print("You have no photos")
-//                self.photoCollectionView.reloadData()
-//            }
-//        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -188,11 +164,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cameraCell", for: indexPath)
-        
-        let imageView = cell.viewWithTag(1) as! UIImageView
-        let image = showImageArray[indexPath.row]
-        imageView.image = image.image
-        
+        if let cell = cell as? CollectionViewCell {
+            cell.albumImage = showImageArray[indexPath.row]
+        }
         return cell
     }
     
