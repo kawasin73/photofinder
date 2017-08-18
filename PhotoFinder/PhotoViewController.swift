@@ -26,6 +26,10 @@ class PhotoViewController: UIViewController, UITextFieldDelegate {
         userDefaults.setValue(keywordTextfield.text, forKeyPath: album?.id ?? "NONE")
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onCancel(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     var album: AlbumImage?
     

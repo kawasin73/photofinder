@@ -108,7 +108,7 @@
                                     <navigationItem id="qdv-oJ-E1I">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="d5C-e6-TYn">
                                             <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="HTQ-5H-UMa"/>
+                                                <action selector="onCancel:" destination="y85-OY-sNn" id="Jpx-4a-cMw"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="HfK-0X-TFJ">
