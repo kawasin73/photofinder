@@ -111,7 +111,7 @@
 				TargetAttributes = {
 					7AE780A51F3A9AEF008A0A58 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = PQJH3VJ8Y8;
+						DevelopmentTeam = UG3KZ8L8DG;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -281,10 +281,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PQJH3VJ8Y8;
+				DEVELOPMENT_TEAM = UG3KZ8L8DG;
 				INFOPLIST_FILE = PhotoFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.PhotoFinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kawasin73.PhotoFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -294,10 +294,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PQJH3VJ8Y8;
+				DEVELOPMENT_TEAM = UG3KZ8L8DG;
 				INFOPLIST_FILE = PhotoFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeschool.PhotoFinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kawasin73.PhotoFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
