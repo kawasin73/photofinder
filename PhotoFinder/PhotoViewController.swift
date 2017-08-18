@@ -9,6 +9,7 @@
 import Foundation
 
 import UIKit
+import Photos
 
 class PhotoViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,6 +17,8 @@ class PhotoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var keywordTextfield : UITextField!
     
     let userDefaults = UserDefaults.standard
+    
+    let imgManager = PHImageManager.default()
     
     @IBAction func onSave(_ sender: UIBarButtonItem) {
         print("KEY:", album?.id ?? "NONE")
@@ -30,8 +33,13 @@ class PhotoViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         keywordTextfield.delegate = self
         if let album = album {
-            photoView.image = album.image
-            if let text = userDefaults.value(forKey: album.id ?? "NONE") as? String {
+            let requestOptions = PHImageRequestOptions()
+            requestOptions.isSynchronous = true
+            requestOptions.deliveryMode = .highQualityFormat
+            imgManager.requestImage(for: album.asset , targetSize: CGSize(width: 250, height: 250), contentMode: .aspectFill, options: requestOptions, resultHandler: { [weak self] image, info in
+                self?.photoView.image = image
+            })
+            if let text = userDefaults.value(forKey: album.id ) as? String {
                 keywordTextfield.text = text
             }
         }

@@ -11,7 +11,6 @@ import Photos
 
 struct AlbumImage {
     let asset: PHAsset
-    let image: UIImage?
     let id: String
 }
 
@@ -44,46 +43,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         print(userDefaults.dictionaryRepresentation())
     }
-    
-    
-    
-    
-    
-//    // MARK:- prepareForSegue
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        // retrieve selected cell &amp; fruit
-//        if let indexPath = getIndexPathForSelectedCell() {
-//            
-//            let fruit = dataSource.fruitsInGroup(indexPath.section)[indexPath.row]
-//            
-//            let detailViewController = segue.destination as! DetailViewController
-//            detailViewController.fruit = fruit
-//        }
-//    }
-//    
-//    func getIndexPathForSelectedCell() -&gt; NSIndexPath? {
-//    
-//    var indexPath:NSIndexPath?
-//    
-//    if collectionView.indexPathsForSelectedItems().count &gt; 0 {
-//    indexPath = collectionView.indexPathsForSelectedItems()[0] as? NSIndexPath
-//    }
-//    return indexPath
-//    }
-    
-    
-    
-    
-    
-    
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        // 選択した写真を取得する
-//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        // ビューに表示する
-//        self.imageView.image = image
-//        // 写真を選ぶビューを引っ込める
-//        self.dismiss(animated: true)
-//    }
     
     
     func filterImages(text: String?) {
@@ -129,14 +88,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
        
         let assets:PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         assets.enumerateObjects({ asset, idx, stop in
-            let album = AlbumImage(asset: asset, image: nil, id: asset.localIdentifier)
+            let album = AlbumImage(asset: asset, id: asset.localIdentifier)
             self.imageArray.append(album)
             self.showImageArray.append(album)
         })
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBarSearchButtonClicked: \(searchBar.text)")
+        print("searchBarSearchButtonClicked: \(String(describing: searchBar.text))")
         filterImages(text: searchBar.text)
     }
     
